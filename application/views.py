@@ -57,11 +57,12 @@ def index(request):
     return render_to_response('index.html', locals())
 
 
-@api_view(['POST', 'GET'])
+@api_view(['GET'])
 def power(request):
     if request.GET.get('state', None):
         new_state = str(request.GET.get('state', '1'))
         current_state = str(get_setting('power', '0'))
+        print new_state, current_state
         if new_state != current_state:
             press(POWER)
             save_setting('power', new_state)
