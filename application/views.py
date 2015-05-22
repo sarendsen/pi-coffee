@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from rest_framework.decorators import api_view, throttle_classes
 import RPi.GPIO as GPIO
+import time
 
 
 # physical pin: 11 / BCM 17 / Aan/Uit
@@ -34,14 +35,9 @@ def power_view(request):
 
     requested_status = request.GET['status']
 
-    if requested_status == 'on':
+    if requested_status in ['on', 'off']:
         GPIO.output(POWER, HIGH)
-    elif requested_status == 'off':
+        time.sleep(0.1)
         GPIO.output(POWER, LOW)
-
-    if GPIO.input(POWER):
-        print('Input was HIGH')
-    else:
-        print('Input was LOW')
 
     return Response({"message": "sup"})
