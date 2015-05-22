@@ -78,7 +78,8 @@ def coffee_strength(request, strength):
     strength = int(strength)
     current_strength = get_setting('strength', 3)
     num_presses = get_strength_presses(current_strength, strength)
-    print num_presses
+    #print num_presses
+    num_presses = 1
 
     for i in xrange(num_presses - 1):
         press(STRENGTH)
