@@ -10,5 +10,5 @@ import RPi.GPIO as GPIO
 
 
 mode = GPIO.getmode()
-
+print "yo"
 print mode
