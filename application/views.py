@@ -15,12 +15,13 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 
 mode = GPIO.getmode()
-print mode
 
 HIGH = 1
 LOW = 0
 
 POWER = 17
+
+GPIO.setup([17], GPIO.OUT)
 
 
 @api_view(['GET'])
