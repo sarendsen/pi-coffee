@@ -35,7 +35,7 @@
       power_state = '0';
       $.get('/api/power', null, function(data){
         power_state = data['message'];
-        set_button_color(state, $('powerbutton'))
+        set_button_color(power_state, $('powerbutton'))
       });
 
       function set_button_color(state, button) {
