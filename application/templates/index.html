@@ -59,7 +59,7 @@
 
         $.get('/api/power/?state=' + new_state, null, function(data){
           power_state = data['message'];
-          set_color(power_state, $('#powerbutton'));
+          set_button_color(power_state, $('#powerbutton'));
         });
         return false;
       }
