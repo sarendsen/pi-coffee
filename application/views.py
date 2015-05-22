@@ -34,7 +34,8 @@ def get_setting(key, default=None):
     try:
         obj = Setting.objects.get(key=key)
     except:
-        obj = Setting(key='strength', value=default).save()
+        obj = Setting(key='strength', value=default)
+        obj.save()
 
     return obj.value
 
@@ -51,8 +52,10 @@ def press(PIN):
     time.sleep(0.4)
     GPIO.output(PIN, HIGH)
 
+
 def index(request):
     return render_to_response('index.html', locals())
+
 
 @api_view(['GET'])
 def power(request):
