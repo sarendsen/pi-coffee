@@ -20,12 +20,15 @@ HIGH = 1
 LOW = 0
 
 POWER = 17
+STRENGTH = 18
+NORMAL = 22
+STRONG = 23
 
-GPIO.setup([17], GPIO.OUT)
+GPIO.setup([POWER, STRENGTH, NORMAL, STRONG], GPIO.OUT)
 
 
 @api_view(['GET'])
-def on_off_view(request):
+def power_view(request):
     if 'status' not in request.GET:
         return Response()
 
@@ -36,11 +39,9 @@ def on_off_view(request):
     elif requested_status == 'off':
         GPIO.output(POWER, LOW)
 
-    '''
-    if GPIO.input(channel):
+    if GPIO.input(POWER):
         print('Input was HIGH')
     else:
         print('Input was LOW')
-    '''
 
     return Response({"message": "sup"})
