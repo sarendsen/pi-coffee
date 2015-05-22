@@ -10,7 +10,7 @@ from .models import Setting
 
 
 # physical pin: 11 / BCM 17 / Aan/Uit
-# physical pin: 12 / BCM 18 / Sterkte
+# physical pin: 18 / BCM 24 / Sterkte
 # physical pin: 15 / BCM 22 / Normaal
 # physical pin: 16 / BCM 23 / Sterk
 
@@ -23,7 +23,7 @@ HIGH = 1
 LOW = 0
 
 POWER = 17
-STRENGTH = 18
+STRENGTH = 24
 NORMAL = 22
 STRONG = 23
 

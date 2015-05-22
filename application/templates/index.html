@@ -10,25 +10,25 @@
 
 
     <fieldset>
-      <legend>Espresso</legend>
-      <a class="btn btn-default" onclick="return brew('espresso', 1)">Normal</a>
+      <legend>Select type</legend>
+      <a href="" class="btn btn-default" onclick="return brew('coffee', 1);">Coffee</a>
+      <a href="" class="btn btn-default" onclick="return brew('espresso', 1);">Espresso</a>
+<!--       <a class="btn btn-default" onclick="return brew('espresso', 1)">Normal</a>
       <a class="btn btn-default" onclick="return brew('espresso', 2)">Strong</a>
-      <a class="btn btn-default" onclick="return brew('espresso', 3)">Extra Strong</a>
+      <a class="btn btn-default" onclick="return brew('espresso', 3)">Extra Strong</a> -->
     </fieldset>
-    <fieldset>
+<!--     <fieldset>
       <legend>Coffee</legend>
       <a class="btn btn-default" onclick="return brew('coffee', 1)">Normal</a>
       <a class="btn btn-default" onclick="return brew('coffee', 2)">Strong</a>
       <a class="btn btn-default" onclick="return brew('coffee', 3)">Extra Strong</a>
-    </fieldset>
+    </fieldset> -->
 
     <script>
       function brew(what, strength) {
-        $.get('/api/strength/' + strength + '/', null, function(data){
-          $.get('/api/' + what + '/', null, function(data_coffee){
-            alert("Your coffee is being brewed...")
-          })
-        });
+        $.get('/api/' + what + '/', null, function(data_coffee){
+          alert("Your coffee is being brewed...")
+        })
         return false;
       }
 
