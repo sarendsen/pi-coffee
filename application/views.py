@@ -59,19 +59,14 @@ def index(request):
 
 @api_view(['POST', 'GET'])
 def power(request):
-    if request.method == 'GET':
-        return Response({"message": get_setting('power', '0')})
-    if request.method == 'POST':
-        new_state = str(request.POST.get('state', '1'))
+    if request.GET.get('state', None):
+        new_state = str(request.GET.get('state', '1'))
         current_state = str(get_setting('power', '0'))
         if new_state != current_state:
             press(POWER)
             save_setting('power', new_state)
-    return Response({"message": get_setting('power', '0')})
 
-@api_view(['GET'])
-def power_state(request):
-    return Response({"message": get_setting('power')})
+    return Response({"message": get_setting('power', '0')})
 
 def get_strength_presses(current_strength, new_strength):
     # new : current
