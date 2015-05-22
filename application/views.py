@@ -12,7 +12,6 @@ import time
 # physical pin: 16 / BCM 23 / Sterk
 
 
-#GPIO.setmode(GPIO.BOARD)
 GPIO.setmode(GPIO.BCM)
 
 mode = GPIO.getmode()
@@ -42,5 +41,5 @@ def power_view(request):
         time.sleep(0.5)
         GPIO.output(POWER, HIGH)
 
-    GPIO.cleanup()
+    #GPIO.cleanup()
     return Response({"message": "success"})
