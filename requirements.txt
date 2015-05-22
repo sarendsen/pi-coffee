@@ -1,0 +1,2 @@
+django==1.7
+RPi.GPIO==0.5.11
