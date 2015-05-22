@@ -37,7 +37,10 @@ def power_view(request):
 
     if requested_status in ['on', 'off']:
         GPIO.output(POWER, HIGH)
+        print "Start : %s" % time.ctime()
         time.sleep(0.1)
+        print "End : %s" % time.ctime()
         GPIO.output(POWER, LOW)
 
-    return Response({"message": "sup"})
+    GPIO.cleanup()
+    return Response({"message": "success"})
