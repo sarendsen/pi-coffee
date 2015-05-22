@@ -38,7 +38,7 @@ def power_view(request):
     if requested_status in ['on', 'off']:
         GPIO.output(POWER, HIGH)
         print "Start : %s" % time.ctime()
-        time.sleep(0.1)
+        time.sleep(1)
         print "End : %s" % time.ctime()
         GPIO.output(POWER, LOW)
 
