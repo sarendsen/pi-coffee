@@ -75,6 +75,7 @@ def get_strength_presses(current_strength, new_strength):
 
 @api_view(['GET'])
 def coffee_strength(request, strength):
+    strength = int(strength)
     current_strength = get_setting('strength', 3)
     num_presses = get_strength_presses(current_strength, strength)
     print num_presses
