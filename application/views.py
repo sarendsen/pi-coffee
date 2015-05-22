@@ -46,11 +46,18 @@ def save_setting(key, value):
 
 
 def press(PIN):
+    GPIO.output(PIN, LOW)
+    time.sleep(0.4)
+    GPIO.output(PIN, HIGH)
+    time.sleep(0.4)
+    GPIO.output(PIN, LOW)
+    '''
     GPIO.output(PIN, HIGH)
     time.sleep(0.4)
     GPIO.output(PIN, LOW)
     time.sleep(0.4)
     GPIO.output(PIN, HIGH)
+    '''
 
 
 def index(request):
@@ -85,6 +92,10 @@ def coffee_strength(request, strength):
     strength = int(strength)
     current_strength = get_setting('strength', 3)
     num_presses = get_strength_presses(current_strength, strength)
+    '''
+    for p in [POWER, STRENGTH, NORMAL, STRONG]:
+        GPIO.output(p, LOW)
+    '''
 
     for i in xrange(num_presses - 1):
         press(STRENGTH)
