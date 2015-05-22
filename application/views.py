@@ -4,16 +4,23 @@ from rest_framework import authentication, permissions
 from rest_framework.decorators import api_view, throttle_classes
 import RPi.GPIO as GPIO
 
-# 17 = Sterk
-# 18 = Normaal
-# 27 = Sterkte
-# 22 = Aan/Uit
+
+# physical pin: 11 / BCM 17 / Aan/Uit
+# physical pin: 12 / BCM 18 / Sterkte
+# physical pin: 15 / BCM 22 / Normaal
+# physical pin: 16 / BCM 23 / Sterk
+
+
+#GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
 mode = GPIO.getmode()
 print mode
 
 HIGH = 1
 LOW = 0
+
+POWER = 17
 
 
 @api_view(['GET'])
@@ -24,9 +31,9 @@ def on_off_view(request):
     requested_status = request.GET['status']
 
     if requested_status == 'on':
-        GPIO.output(18, HIGH)
+        GPIO.output(POWER, HIGH)
     elif requested_status == 'off':
-        GPIO.output(18, LOW)
+        GPIO.output(POWER, LOW)
 
     '''
     if GPIO.input(channel):

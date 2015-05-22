@@ -4,5 +4,5 @@ from django.contrib import admin
 from .views import *
 
 urlpatterns = patterns('',
-	url(r'^api/$', on_off_view, name='on_off_view'),
+	url(r'^api/on_off/$', on_off_view, name='on_off_view'),
 )
