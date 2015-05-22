@@ -62,14 +62,12 @@ def power(request):
     if request.GET.get('state', None):
         new_state = str(request.GET.get('state', '1'))
         current_state = str(get_setting('power', '0'))
-        #print new_state, current_state
         if new_state != current_state:
             press(POWER)
-            print get_setting('power', '0')
             save_setting('power', new_state)
-            print get_setting('power', '0')
 
     return Response({"message": get_setting('power', '0')})
+
 
 def get_strength_presses(current_strength, new_strength):
     # new : current
