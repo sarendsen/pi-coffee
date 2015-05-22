@@ -64,13 +64,14 @@ def power(request):
 
 
 def get_strength_presses(current_strength, new_strength):
-    if current_strength == new_strength:
-        return 0
+    # new : current
+    steps = {
+        1: {1: 0, 2: 1, 3: 1},
+        2: {1: 1, 2: 0, 3: 2},
+        3: {1: 2, 2: 1, 3: 0}
+    }
 
-    if current_strength == 3:
-        return new_strength
-
-    return current_strength - new_strength
+    return steps[current_strength][new_strength]
 
 
 @api_view(['GET'])
@@ -78,8 +79,6 @@ def coffee_strength(request, strength):
     strength = int(strength)
     current_strength = get_setting('strength', 3)
     num_presses = get_strength_presses(current_strength, strength)
-    #print num_presses
-    num_presses = 1
 
     for i in xrange(num_presses - 1):
         press(STRENGTH)
