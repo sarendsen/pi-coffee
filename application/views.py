@@ -27,19 +27,27 @@ STRONG = 23
 GPIO.setup([POWER, STRENGTH, NORMAL, STRONG], GPIO.OUT)
 
 
+def press(PIN):
+    GPIO.output(PIN, HIGH)
+    time.sleep(0.4)
+    GPIO.output(PIN, LOW)
+    time.sleep(0.4)
+    GPIO.output(PIN, HIGH)
+
+
 @api_view(['GET'])
-def power_view(request):
-    if 'status' not in request.GET:
-        return Response()
+def power(request):
+    press(POWER)
+    return Response({"message": "success"})
 
-    requested_status = request.GET['status']
 
-    if requested_status in ['on', 'off']:
-        GPIO.output(POWER, HIGH)
-        time.sleep(0.5)
-        GPIO.output(POWER, LOW)
-        time.sleep(0.5)
-        GPIO.output(POWER, HIGH)
+@api_view(['GET'])
+def coffee_strong(request):
+    press(STRONG)
+    return Response({"message": "success"})
 
-    #GPIO.cleanup()
+
+@api_view(['GET'])
+def coffee_normal(request):
+    press(NORMAL)
     return Response({"message": "success"})
