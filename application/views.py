@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view, throttle_classes
 import RPi.GPIO as GPIO
 import time
 
+from .models import Setting
+
 
 # physical pin: 11 / BCM 17 / Aan/Uit
 # physical pin: 12 / BCM 18 / Sterkte
@@ -27,6 +29,20 @@ STRONG = 23
 GPIO.setup([POWER, STRENGTH, NORMAL, STRONG], GPIO.OUT)
 
 
+def get_setting(key, default=None):
+    try:
+        obj = Setting.objects.get(key=key)
+    except:
+        obj = Setting(key='strength', value=default).save()
+
+    return obj.value
+
+
+def save_setting(key, value):
+    obj, created = Settings.objects.update_or_create(key=key, value=value)
+    return obj
+
+
 def press(PIN):
     GPIO.output(PIN, HIGH)
     time.sleep(0.4)
@@ -38,6 +54,21 @@ def press(PIN):
 @api_view(['GET'])
 def power(request):
     press(POWER)
+    return Response({"message": "success"})
+
+
+@api_view(['GET'])
+def coffee_strength(request, strength):
+    current_strength = get_setting('strength', 3)
+
+    press(STRENGTH)
+    if strength == 3:
+        strength = 1
+    else:
+        strength += 1
+
+    save_setting('strength', strength)
+
     return Response({"message": "success"})
 
 
