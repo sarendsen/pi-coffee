@@ -43,7 +43,7 @@
           new_state = '0';
         }
 
-        $.get('/api/power/?state=' + new_state, , function(data){
+        $.get('/api/power/?state=' + new_state, null, function(data){
           power_state = data['message'];
         });
       }
