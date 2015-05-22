@@ -1,3 +1,4 @@
+from django.shortcuts import render_to_response
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
@@ -50,6 +51,8 @@ def press(PIN):
     time.sleep(0.4)
     GPIO.output(PIN, HIGH)
 
+def index(request):
+    return render_to_response('index.html', locals())
 
 @api_view(['GET'])
 def power(request):
