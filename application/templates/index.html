@@ -3,6 +3,12 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <fieldset>
+      <a href="" class="btn btn-default" onclick="return power();">On/Off</a>
+    </fieldset>
+
+
     <fieldset>
       <legend>Espresso</legend>
       <a class="btn btn-default" onclick="return brew('espresso', 1)">Normal</a>
@@ -18,12 +24,18 @@
 
     <script>
       function brew(what, strength) {
-        $.get('/api/strength/' + strength, null, function(data){
-          $.get('/api/' + what, null, function(data_coffee){
-            alert("You're coffee is being brewed...")
+        $.get('/api/strength/' + strength + '/', null, function(data){
+          $.get('/api/' + what + '/', null, function(data_coffee){
+            alert("Your coffee is being brewed...")
           })
         })
       }
+      function power() {
+        $.get('/api/power/', null, function(data){
+
+        });
+      }
+
     </script>
   </body>
 </html>
