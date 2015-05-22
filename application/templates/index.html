@@ -1,0 +1,29 @@
+<html>
+  <body>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <fieldset>
+      <legend>Espresso</legend>
+      <a class="btn btn-default" onclick="return brew('espresso', 1)">Normal</a>
+      <a class="btn btn-default" onclick="return brew('espresso', 2)">Strong</a>
+      <a class="btn btn-default" onclick="return brew('espresso', 3)">Extra Strong</a>
+    </fieldset>
+    <fieldset>
+      <legend>Coffee</legend>
+      <a class="btn btn-default" onclick="return brew('coffee', 1)">Normal</a>
+      <a class="btn btn-default" onclick="return brew('coffee', 2)">Strong</a>
+      <a class="btn btn-default" onclick="return brew('coffee', 3)">Extra Strong</a>
+    </fieldset>
+
+    <script>
+      function brew(what, strength) {
+        $.get('/api/strength/' + strength, null, function(data){
+          $.get('/api/' + what, null, function(data_coffee){
+            alert("You're coffee is being brewed...")
+          })
+        })
+      }
+    </script>
+  </body>
+</html>
