@@ -5,7 +5,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <fieldset>
-      <a href="" class="btn btn-default" onclick="return power();">On/Off</a>
+      <a id="powerbutton" href="" class="btn btn-default" onclick="return power($(this));">Unknown</a>
     </fieldset>
 
 
@@ -35,17 +35,30 @@
       power_state = '0';
       $.get('/api/power', null, function(data){
         power_state = data['message'];
+        set_button_color(state, $('powerbutton'))
       });
+
+      function set_button_color(state, button) {
+        button.removeClass('btn-default').removeClass('btn-primary');
+        if(state == '1') {
+          button.addClass('btn-success');
+          button.text('On')
+        } else {
+          button.addClass('btn-danger');
+          button.text('Off')
+        }
+      }
 
       function power() {
         if(power_state == '0') {
-            new_state = '1';
+          new_state = '1';
         } else {
           new_state = '0';
         }
 
         $.get('/api/power/?state=' + new_state, null, function(data){
           power_state = data['message'];
+          set_color(power_state, $('powerbutton'));
         });
         return false;
       }
