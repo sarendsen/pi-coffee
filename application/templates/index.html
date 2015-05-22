@@ -33,14 +33,18 @@
 
       power_state = '0';
       $.get('/api/power', null, function(data){
-        console.log(data);
+        power_state = data['message'];
       });
 
-
       function power() {
+        if(power_state == '0') {
+            new_state = '1';
+        } else {
+          new_state = '0';
+        }
 
-        $.get('/api/power/', , function(data){
-
+        $.get('/api/power/?state=' + new_state, , function(data){
+          power_state = data['message'];
         });
       }
 
