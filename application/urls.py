@@ -4,3 +4,11 @@ from django.contrib import admin
 urlpatterns = patterns('',
 
 )
+
+
+import RPi.GPIO as GPIO
+
+
+mode = GPIO.getmode()
+
+print mode
