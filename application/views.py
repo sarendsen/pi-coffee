@@ -46,18 +46,11 @@ def save_setting(key, value):
 
 
 def press(PIN):
-    GPIO.output(PIN, LOW)
-    time.sleep(0.4)
-    GPIO.output(PIN, HIGH)
-    time.sleep(0.4)
-    GPIO.output(PIN, LOW)
-    '''
     GPIO.output(PIN, HIGH)
     time.sleep(0.4)
     GPIO.output(PIN, LOW)
     time.sleep(0.4)
     GPIO.output(PIN, HIGH)
-    '''
 
 
 def index(request):
