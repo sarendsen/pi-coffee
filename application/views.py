@@ -41,7 +41,7 @@ def get_setting(key, default=None):
 
 
 def save_setting(key, value):
-    obj, created = Settings.objects.update_or_create(key=key, value=value)
+    obj, created = Setting.objects.update_or_create(key=key, value=value)
     return obj
 
 
