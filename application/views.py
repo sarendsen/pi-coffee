@@ -67,8 +67,7 @@ def power(request):
         if new_state != current_state:
             press(POWER)
             save_setting('power', new_state)
-
-    return Response({"message": "success"})
+    return Response({"message": get_setting('power', '0')})
 
 @api_view(['GET'])
 def power_state(request):
