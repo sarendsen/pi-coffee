@@ -57,15 +57,24 @@ def power(request):
     return Response({"message": "success"})
 
 
+def get_strength_presses(current_strength, new_strength):
+    if current_strength == new_strength:
+        return 0
+
+    if current_strength == 3:
+        return new_strength
+
+    return current_strength - new_strength
+
+
 @api_view(['GET'])
 def coffee_strength(request, strength):
     current_strength = get_setting('strength', 3)
+    num_presses = get_strength_presses(current_strength, strength)
+    print num_presses
 
-    press(STRENGTH)
-    if strength == 3:
-        strength = 1
-    else:
-        strength += 1
+    for i in xrange(num_presses - 1):
+        press(STRENGTH)
 
     save_setting('strength', strength)
 
