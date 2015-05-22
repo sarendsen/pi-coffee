@@ -28,7 +28,8 @@
           $.get('/api/' + what + '/', null, function(data_coffee){
             alert("Your coffee is being brewed...")
           })
-        })
+        });
+        return false;
       }
 
       power_state = '0';
@@ -46,6 +47,7 @@
         $.get('/api/power/?state=' + new_state, null, function(data){
           power_state = data['message'];
         });
+        return false;
       }
 
     </script>
